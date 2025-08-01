@@ -1,0 +1,41 @@
+<form method="POST">
+  <input class="form-control my-2" type="text" name="name" placeholder="Your Name" required>
+
+  <label>Select Category:</label>
+  <select class="form-control my-2" name="category" id="category" onchange="showChoices()" required>
+    <option value="">Choose Category</option>
+    <option value="CR">Class Representative</option>
+    <option value="Trip">Trip Destination</option>
+    <option value="Sports">Sports Event</option>
+  </select>
+
+  <label>Select Choice:</label>
+  <select class="form-control my-2" name="choice" id="choiceDropdown" required>
+    <option value="">Choose Option</option>
+  </select>
+
+  <button class="btn btn-success mt-2" type="submit">Submit Vote</button>
+</form>
+
+<script>
+  const options = {
+    CR: ["Alice", "Bob", "Charlie"],
+    Trip: ["Goa", "Manali", "Mysore"],
+    Sports: ["Football", "Cricket", "Volleyball"]
+  };
+
+  function showChoices() {
+    const category = document.getElementById("category").value;
+    const choiceDropdown = document.getElementById("choiceDropdown");
+    choiceDropdown.innerHTML = "<option value=''>Choose Option</option>";
+
+    if (category && options[category]) {
+      options[category].forEach(function (item) {
+        const option = document.createElement("option");
+        option.value = item;
+        option.text = item;
+        choiceDropdown.appendChild(option);
+      });
+    }
+  }
+</script>
