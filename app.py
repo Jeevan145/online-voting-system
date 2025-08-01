@@ -15,6 +15,7 @@ if not os.path.exists(VOTE_FILE):
 @app.route('/')
 def index():
     return render_template('index.html')
+    
 
 @app.route('/vote', methods=['GET', 'POST'])
 def vote():
@@ -51,5 +52,14 @@ def results():
 
     return render_template('results.html', results=results_data)
 
+def home():
+    return "Voting System Running!"
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    from os import environ
+    app.run(host='0.0.0.0', port=int(environ.get('PORT', 5000)))
+    import os
+port = int(os.environ.get('PORT', 5000))
+app.run(host='0.0.0.0', port=port)
+
